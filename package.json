@@ -3,5 +3,23 @@
   "version": "0.0.1",
   "description": "Record sound scape",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "watch": "./node_modules/.bin/rollup -c -w 'src/**'",
+    "build": "./node_modules/.bin/rollup -c",
+    "dev": "./node_modules/.bin/lr-http-server --port 6060"
+  },
+  "dependencies": {
+    "mapbox-gl": "^1.8.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-replace": "^2.3.1",
+    "lr-http-server": "^0.1.5",
+    "rollup": "^2.1.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-globals": "^1.4.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^5.3.0"
+  }
 }
