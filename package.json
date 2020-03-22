@@ -1,0 +1,7 @@
+{
+  "name": "soundscape-db",
+  "version": "0.0.1",
+  "description": "Record sound scape",
+  "main": "index.js",
+  "license": "MIT"
+}
