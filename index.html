@@ -1,0 +1,49 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <meta name="theme-color" content="#fafafa">
+
+</head>
+
+<body>
+  <!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+  <!-- Add your site or application content here -->
+  <main>
+   <article id="map"></article>
+   <footer>
+     <form>
+       <input type="text" id="route-id" name="id" value="" />
+       <!--<input type="text" name="color" value="#fff"/>-->
+       <input type="submit" id="done" value="done" />
+     </form>
+     <button id="create" value="new">New route</button>
+     <button id="undo" value="undo">Undo step</button>
+   </footer>
+  </main>
+  <style>
+  article#map {
+    height: 80vh;
+  }
+  </style>
+
+  <script src="js/vendor/modernizr-3.8.0.min.js"></script>
+  <script src="dist/js/app.js"></script>
+</body>
+
+</html>
