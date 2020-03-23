@@ -10,7 +10,9 @@
     "dev": "./node_modules/.bin/lr-http-server --port 6060"
   },
   "dependencies": {
-    "mapbox-gl": "^1.8.1"
+    "kefir": "^3.8.6",
+    "mapbox-gl": "^1.8.1",
+    "uuid": "^7.0.2"
   },
   "devDependencies": {
     "@rollup/plugin-replace": "^2.3.1",

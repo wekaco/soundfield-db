@@ -24,10 +24,21 @@
   <![endif]-->
 
   <!-- Add your site or application content here -->
-  <section id="map"></section>
+  <main>
+   <article id="map"></article>
+   <footer>
+     <form>
+       <input type="text" id="route-id" name="id" value="" />
+       <!--<input type="text" name="color" value="#fff"/>-->
+       <input type="submit" id="done" value="done" />
+     </form>
+     <button id="create" value="new">New route</button>
+     <button id="undo" value="undo">Undo step</button>
+   </footer>
+  </main>
   <style>
-  section#map {
-    height: 100vh;
+  article#map {
+    height: 80vh;
   }
   </style>
 

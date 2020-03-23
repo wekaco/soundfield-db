@@ -1,4 +1,6 @@
 const mapboxgl  = require('mapbox-gl/dist/mapbox-gl.js');
+const router = require('./router.js');
+const Kefir = require('kefir');
 
 const init = () => {
   // Setup map
@@ -21,33 +23,35 @@ const init = () => {
 
   const coordinates = [];
   map.on('load', () => {
-    const data = (coordinates) => ({
-      'type': 'Feature',
-      'properties': {},
-      'geometry': {
-        'type': 'LineString',
-        'coordinates': coordinates
-      }
+    const coordinates = Kefir.stream(emitter => {
+      map.on('click', (e) => emitter.emit(e.lngLat.toArray()));
+      return () => {
+        //unsubscribe
+      };
     });
-    map.addSource('route', { 'type': 'geojson', 'data': data(coordinates) });
-    
-    map.addLayer({
-      'id': 'route',
-      'type': 'line',
-      'source': 'route',
-      'layout': {
-        'line-join': 'round',
-        'line-cap': 'round'
-      },
-      'paint': {
-        'line-color': '#888',
-        'line-width': 8
+    coordinates.log();
+    // Setup router
+    const routes = router(document.querySelector('footer'), coordinates);
+    routes.observe(({ id, data, type }) => {
+      const source = map.getSource(id);
+      if (source) {
+        return source.setData(data);
       }
-    });
-
-    map.on('click', function(e) {
-      coordinates.push(e.lngLat.toArray());
-      map.getSource('route').setData(data(coordinates));
+      map.addSource(id, { type, data });
+      console.log(id);
+      map.addLayer({
+        'id': `layer_${id}`,
+        'type': 'line',
+        'source': id,
+        'layout': {
+          'line-join': 'round',
+          'line-cap': 'round'
+        },
+        'paint': {
+          'line-color': '#888',
+          'line-width': 8
+        }
+      });
     });
   });
 };
