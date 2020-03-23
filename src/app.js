@@ -38,7 +38,7 @@ const init = () => {
         return source.setData(data);
       }
       map.addSource(id, { type, data });
-      console.log(id);
+
       map.addLayer({
         'id': `layer_${id}`,
         'type': 'line',
@@ -53,6 +53,30 @@ const init = () => {
         }
       });
     });
+
+    routes.observe((() => {
+      const download = document.getElementById('download');
+      let url = null;
+      return ({ data, id }) => {
+        if (url) {
+          URL.revokeObjectURL(url);
+        }
+        const file = new File(
+          [ JSON.stringify(data) ],
+          `${id}.json`,
+          {
+            type : "application/vnd.geo+json;charset=utf-8"
+          }
+        );
+        // Create an addressable version of the blob.
+        // --
+        // CAUTION: At this point, the URL has been allocated and the blob will be
+        // kept in the document memory space until the document is unloaded or the
+        // URL is explicitly released (see above).
+        url = URL.createObjectURL(file);
+        download.setAttribute("href", url);
+      };
+    })());
   });
 };
 
