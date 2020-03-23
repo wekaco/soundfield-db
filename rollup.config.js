@@ -8,23 +8,29 @@ import commonjs from 'rollup-plugin-commonjs';
 
 import { terser } from 'rollup-plugin-terser';
 
-console.log(process.env);
+import copy from 'rollup-plugin-copy';
 
 export default {
   input: 'src/app.js',
   output: [
     {
-      file: 'dist/js/app.js',
+      file: 'www/js/app.js',
       format: 'iife',
       sourcemap: 'inline'
     },
     {
-      file: 'dist/js/app.min.js',
+      file: 'www/js/app.min.js',
       format: 'iife'
     },
   ],
   plugins: [
     replace({ __MAPBOX_API_KEY__: process.env.MAPBOX_API_KEY || 'your_api_key_here' }),
+    copy({
+      targets: [
+        { src: 'index.html', dest: 'www/' },
+        { src: 'css', dest: 'www/' }
+      ]
+    }),
     globals(),
     nodeResolve({ browser: true }),
     commonjs(),
