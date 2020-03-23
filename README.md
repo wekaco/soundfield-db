@@ -9,3 +9,10 @@ Field records sound database
 MAPBOX_API_KEY={your key here} yarn watch
 ```
 
+## Cordova
+
+```
+cordova prepare
+cordova build
+cordova run
+```
